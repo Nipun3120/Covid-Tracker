@@ -7,27 +7,35 @@ import CountryPicker from "./components/countryPicker/CountryPicker";
 import classes from './assets/css/App.module.css';
 
 import { fetchData } from './api';
+import { Typography } from "@material-ui/core";
 
 class App extends React.Component {
 
   state = {
     data: {},
+    country: ''
   }
 
   async componentDidMount() {
     const covidData = await fetchData();
     this.setState({data: covidData});
-
-    // console.log(data);
   }
+
+  countryChangeHandler = async(country)=> {
+      const fetchCountryData = await fetchData(country);
+      console.log(fetchCountryData)
+      this.setState({data:fetchCountryData, country: country})
+  };
+
   render() {
-    const { data } = this.state;
+    const { data, country } = this.state;
 
     return (
       <div className={classes.container}>
+        <Typography className={classes.heading} variant='h2'>COVID-19 </Typography>
         <Cards data={data}/>
-        <CountryPicker />
-        <Chart />
+        <CountryPicker countryChangeHandler={this.countryChangeHandler}/>
+        <Chart data={data} country={country}/>
       </div>
     );
   }

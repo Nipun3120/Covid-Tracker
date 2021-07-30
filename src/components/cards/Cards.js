@@ -14,7 +14,7 @@ const Cards = (props) =>{
             <Grid container spacing={3}>
                 <Grid item component={Card} xs={12} md={3} className={cx(classes.card, classes.activeCases)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Active Cases </Typography>
+                        <Typography color="textSecondary" gutterBottom>Total Infected </Typography>
                         {props.data.confirmed && 
                             <Typography variant="h5">
                                 <CountUp 
