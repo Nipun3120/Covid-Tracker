@@ -20,3 +20,16 @@ export const fetchData = async ()=> {
 
     }
 };
+
+
+export const fetchDailyData = async ()=> {
+    try{
+        const { data } = await axios.get(`${url}/daily`);
+
+        // console.log(data);
+        // const data.map(({ positive, recovered, death, dateChecked: date }) => ({ confirmed: positive, recovered, deaths: death, date }));
+    }
+    catch(error) {
+
+    }
+};
